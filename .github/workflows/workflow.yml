@@ -12,8 +12,7 @@ jobs:
     - name: create clave ssh
       env:
         ssh_key: $ {{ secrets.SSH_KEY}}
-      
-    - run: |
+      run: |
         echo "$ssh_key" > key.pem
         chmod 600 key.pem
       
