@@ -5,6 +5,7 @@ jobs:
   hello_world:
     runs-on: ubuntu-latest
     steps:
-      - run: ls 
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
 
-      -run: pwd
+      -run: python3 main.py
