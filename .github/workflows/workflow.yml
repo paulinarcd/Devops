@@ -5,6 +5,4 @@ jobs:
   hello_world:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "hello world"
-    steps:
       - run: python3 --version
