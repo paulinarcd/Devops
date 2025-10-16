@@ -1,29 +1,22 @@
-name: Hello world
-on: [push]
-
+name: hello world
+on:
+  push:
+    branches: [unittest]
 jobs:
   hello_world:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Clonar repositorio
+    - name: Clonar el repositorio
       uses: actions/checkout@v3
 
-    - name: create clave ssh
-      env:
-        ssh_key: $ {{ secrets.SSH_KEY}}
-      run: |
-        echo "$ssh_key" > key.pem
-        chmod 600 key.pem
-
-    - name: ssh connection
-      uses: appleboy/ssh-action@v1
+    - uses: actions/setup-python@v4
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USER }}
-        key: ${{ secrets.SSH_KEY }}
-        port: 22
-        script: sudo docker run -d --name=grafanax -p 3001:3000 grafana/grafana
+        python-version: '3.10'
+    
+    - run: pip install unittest
+
+    - run: python main_test.py
 
 
 
